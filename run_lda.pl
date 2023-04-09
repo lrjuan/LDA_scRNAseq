@@ -4,7 +4,7 @@
 
 $Threads_num = 1;
 $Mallet_path = "/Mallet/bin";
-$Iterations_num = 1000;
+$Iterations_num = 500;
 
 ########Parsing User Parameters#####################
 
@@ -38,50 +38,13 @@ while(my $parameter = shift){
 			last;
 		}
        }elsif($parameter eq "-help" || $parameter eq "-h" || $parameter eq "--help"){
-                print STDERR 'Usage: perl run_lda.pl -input Path_of_expression_matrix -output Prefix_of_results -topics Number_of_topics
-
-The program recieves 3 parameters: -input, -output, and -topics
-
--input FILE
-Single input file: Cells as rows, genes as columns. The first row is gene ID, the first column is cell ID. 
-REQUIRED
-
--output FILENAME
-The results include 5 files:
-(1) prefix.cell.txt - Cell list
-(2) prefix.gene.txt - Gene list
-(3) prefix.c2k.txt - Cell-LF(Document-Topic) matrix
-(4) prefix.k2g.txt - LF-Gene(Topic-Term) matrix
-(5) prefix.mallet.log - Log for the Mallet run
-REQUIRED
-
--topics INTEGER
-Topic number
-REQUIRED
-
-------------------------------------------------------------------------
-Several global parameters need to be reset before running this program for the first time on a new device.
-
-Threads_num = INTEGER
-How many threads can be occupied during the LDA training.
-Default is 1.
-
-Mallet_path = DIRECTORY
-The pre-installed Mallet program location.
-Default is /Mallet/bin.
-
-Iterations_num = INTEGER
-Number of iterations for Gibbs sampling
-Default is 1000.
-The global parameters can be found at the top of the PERL script.
-
-';
-                exit;
+		last;
 	}else{
 		print STDERR "Illegle parameter \"$parameter\"!\n";
 		last;
 	}
 }
+
 if($Expr_path eq "" or $Out_prefix eq "" or $Topics_num == 0){
 	print STDERR 'Usage: perl run_lda.pl -input Path_of_expression_matrix -output Prefix_of_results -topics Number_of_topics
 
@@ -95,8 +58,8 @@ REQUIRED
 The results include 5 files:
 (1) prefix.cell.txt - Cell list
 (2) prefix.gene.txt - Gene list
-(3) prefix.c2k.txt - Cell-LF(Document-Topic) matrix
-(4) prefix.k2g.txt - LF-Gene(Topic-Term) matrix
+(3) prefix.c2k.txt - Cell-PF(Document-Topic) matrix
+(4) prefix.k2g.txt - PF-Gene(Topic-Term) matrix
 (5) prefix.mallet.log - Log for the Mallet run
 REQUIRED
 
@@ -117,7 +80,7 @@ Default is /Mallet/bin.
 
 Iterations_num = INTEGER
 Number of iterations for Gibbs sampling
-Default is 1000.
+Default is 500.
 The global parameters can be found at the top of the PERL script.
 
 ';
