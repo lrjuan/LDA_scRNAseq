@@ -98,3 +98,9 @@ Comming soon!
 There are 1,000 cells in the test data, each has 15,000 genes. The expression data is simulated by Splatter. 
 
 The 1,000 cells can be grouped into 5 groups. **test.labels.txt** records the correspondence between cell IDs and their grouping.
+
+---
+
+Please do not hesitate to address comments/questions/suggestions regarding this tool to: pgbrowser@gmail.com.
+
+L.J. Apr. 8, 2023
