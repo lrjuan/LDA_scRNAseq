@@ -37,7 +37,7 @@ while(my $parameter = shift){
 			print STDERR "Invalid topic number!\n";
 			last;
 		}
-       }elsif($parameter eq "-help" || $parameter eq "-h" || $parameter eq "--help"){
+	}elsif($parameter eq "-help" || $parameter eq "-h" || $parameter eq "--help"){
 		last;
 	}else{
 		print STDERR "Illegle parameter \"$parameter\"!\n";
@@ -51,7 +51,8 @@ if($Expr_path eq "" or $Out_prefix eq "" or $Topics_num == 0){
 The program recieves 3 parameters: -input, -output, and -topics
 
 -input FILE
-Single input file: Cells as rows, genes as columns. The first row is gene ID, the first column is cell ID. 
+Single input file: Cells as rows, genes as columns. 
+The first row is gene ID, the first column is cell ID. 
 REQUIRED
 
 -output FILENAME
@@ -79,7 +80,7 @@ The pre-installed Mallet program location.
 Default is /Mallet/bin.
 
 Iterations_num = INTEGER
-Number of iterations for Gibbs sampling
+Number of iterations for Gibbs sampling.
 Default is 500.
 The global parameters can be found at the top of the PERL script.
 
