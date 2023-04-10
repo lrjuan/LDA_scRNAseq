@@ -21,7 +21,8 @@ In the scRNA-seq analysis context, **cell** is regarded as '**document**', **gen
 * run_lda.pl - main program
 * run_lda.mex.pl - main program for CellRanger Count format: MEX
 * transpose.pl - transpose a gene x cell matrix to cell x gene matrix
-* cell_annotation.R - downstream analysis tools based on the LDA results
+* cell_cluster_annotation.R - downstream analysis tools based on the LDA results
+* main.R - example commands of downstream analysis tools
 * test.txt(.gz)  - example data, simulated by Splatter
 * test.labels.txt - the group labels of the test data
 
@@ -87,7 +88,11 @@ Here we provide transpose.pl program to transpose the gene x cell matrix into ce
 
 Usage:  `perl transpose.pl Path_of_input_file > Output_file`
 
-### cell_annotation.R
+### cell_cluster_annotation.R
+
+Comming soon!
+
+### main.R
 
 Comming soon!
 
