@@ -73,7 +73,7 @@ Usage:  `perl run_lda.mex.pl -input Path_of_MEX_directory -output Prefix_of_resu
 |:----|:----|:----|
 |-input|DIRECTORY|The Path_of_MEX_directory is the "CellRanger Count" output direcotry, must contain 3 files:<br>(1) features.tsv(.gz) or genes.tsv(.gz)<br>(2) barcodes.tsv(.gz) or cells.tsv(.gz)<br>(3) matrix.mtx(.gz)<br>*The above files can be kept gzipped.|
 |-output|FILENAME|The results include 3 files:<br>(1) prefix.c2k.txt - Cell-PF(Document-Topic) matrix<br>(2) prefix.k2g.txt - PF-Gene(Topic-Term) matrix<br>(3) prefix.mallet.log - Log for the Mallet run<br>*run_lda.mex.pl does not provide cell list and gene list, because they exist independently in the input directory in the first place.|
-|-topics|INTEGER|Topic number|
+|-topics|INTEGER|Topics number for LDA training|
 
 An example data for run_lda.mex.pl can be found [Here](https://cf.10xgenomics.com/samples/cell-exp/7.0.0/1k_mouse_kidney_CNIK_3pv3/1k_mouse_kidney_CNIK_3pv3_filtered_feature_bc_matrix.tar.gz)
 
