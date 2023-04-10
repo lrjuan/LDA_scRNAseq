@@ -16,7 +16,6 @@ $Topics_num = 0;
 while(my $parameter = shift){
 	if($parameter eq "-input"){
 		$parameter = shift;
-#		chop($parameter) if($parameter=~/\/$/);
 		if($parameter=~/^[\p{L}\p{N}\p{P}\/ _]+$/ and $parameter!~/^-/){
 			if(-f "$parameter/matrix.mtx.gz"){
 				$MTX_path = "$parameter/matrix.mtx.gz";
@@ -98,7 +97,7 @@ The results include 3 files:
 REQUIRED
 
 -topics INTEGER
-Topic number
+Topics number for LDA training
 REQUIRED
 
 ------------------------------------------------------------------------
