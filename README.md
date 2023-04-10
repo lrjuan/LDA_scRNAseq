@@ -55,7 +55,7 @@ The program recieves 3 parameters: -input, -output, and -topics
 |:----|:----|:----|
 |-input|FILE|Single input file: **Cells as rows, genes as columns**. The first row is gene ID, the first column is cell ID.|
 |-output|FILENAME|The results include 5 files:<br>(1) prefix.cell.txt - Cell list<br>(2) prefix.gene.txt - Gene list<br>(3) prefix.c2k.txt - Cell-PF(Document-Topic) matrix<br>(4) prefix.k2g.txt - PF-Gene(Topic-Term) matrix<br>(5) prefix.mallet.log - Log for the Mallet run|
-|-topics|INTEGER|Topic number|
+|-topics|INTEGER|Topics number for LDA training|
 
 All parameters are required.
 
