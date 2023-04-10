@@ -65,7 +65,7 @@ The results include 5 files:
 REQUIRED
 
 -topics INTEGER
-Topic number
+Topics number for LDA training
 REQUIRED
 
 ------------------------------------------------------------------------
