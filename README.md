@@ -88,6 +88,8 @@ Here we provide transpose.pl program to transpose the gene x cell matrix into ce
 
 Usage:  `perl transpose.pl Path_of_input_file > Output_file`
 
+Memory consumption for converting large-scale data is high, so please be cautious while running it.
+
 ### cell_cluster_annotation.R
 
 Comming soon!
