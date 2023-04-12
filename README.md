@@ -21,8 +21,7 @@ In the scRNA-seq analysis context, **cell** is regarded as '**document**', **gen
 * run_lda.pl - main program
 * cell_cluster_annotation.R - downstream analysis tools based on the LDA results
 * main.R - example commands of downstream analysis tools
-* test.txt(.gz)  - example data, simulated by Splatter
-* test.labels.txt - the group labels of the test data
+* test.tar.gz  - test data
 * run_lda.mex.pl - main program for CellRanger Count format: MEX
 * transpose.pl - transpose a gene x cell matrix to cell x gene matrix
 
