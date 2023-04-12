@@ -19,12 +19,12 @@ In the scRNA-seq analysis context, **cell** is regarded as '**document**', **gen
 ### List of tools and example data
 
 * run_lda.pl - main program
-* run_lda.mex.pl - main program for CellRanger Count format: MEX
-* transpose.pl - transpose a gene x cell matrix to cell x gene matrix
 * cell_cluster_annotation.R - downstream analysis tools based on the LDA results
 * main.R - example commands of downstream analysis tools
 * test.txt(.gz)  - example data, simulated by Splatter
 * test.labels.txt - the group labels of the test data
+* run_lda.mex.pl - main program for CellRanger Count format: MEX
+* transpose.pl - transpose a gene x cell matrix to cell x gene matrix
 
 ### run_lda.pl
 
@@ -64,6 +64,98 @@ In the command line, users can use the --help/-h parameter to view the usage of 
 
 `perl run_lda.pl --help`
 
+### cell_cluster_annotation.R
+
+cell_cluster_annotation.R is the cluster annotation and function interpretation methods. It contains 6 functions, including read_cellTopic, read_topicGene, LDAFindClusters, clusterHGT, representTopicCluster, and representTopicCluster. It takes the results of the LDA modelling and produces functional interpretations, such as the reading of LDA result, cell clusters and their annotations, representative genes and putative functions, etc.
+
+#### read_cellTopic
+
+read_cellTopic is a function to read Cell-PF(Document-Topic) matrix.
+
+Usage:  `read_cellTopic(outPrefix)`
+
+| Parameter | Value type | Note                           |
+| :-------- | :--------- | :----------------------------- |
+| outPrefix | FILENAME   | Path and Prefix of LDA results |
+
+#### read_topicGene
+
+read_topicGene is a function to read PF-Gene(Topic-Term) matrix.
+
+Usage:  `read_topicGene(outPrefix)`
+
+| Parameter | Value type | Note                           |
+| :-------- | :--------- | :----------------------------- |
+| outPrefix | FILENAME   | Path and Prefix of LDA results |
+
+#### LDAFindClusters
+
+LDAFindClusters is a function to identify clusters of cells by LDA and Hellinger distance based K-medoids algorithm
+
+Usage:  `LDAFindClusters(cellTopic, clusterNumber)`
+
+| Parameter     | Value type | Note                           |
+| :------------ | :--------- | :----------------------------- |
+| cellTopic     | MATRIX     | Cell-PF(Document-Topic) matrix |
+| clusterNumber | INTEGER    | specify the number of clusters |
+
+#### clusterHGT
+
+clusterHGT is a function to automatically predict cell type by identifying representative genes for each cell clusters and performing hypergeometric test against pre-established cell type marker LISTs.
+
+Usage:  `clusterHGT(cellTopic, topicGene, clusterResult, pathways , n.features , minSize = 0, log.trans = TRUE, p.adjust = TRUE)`
+
+| Parameter     | Value type | Default | Note                                                         |
+| :------------ | :--------- | :------ | :----------------------------------------------------------- |
+| cellTopic     | MATRIX     |         | Cell-PF(Document-Topic) matrix                               |
+| topicGene     | MATRIX     |         | PF-Gene(Topic-Term) matrix                                   |
+| clusterResult | VECTOR     |         | clustering result                                            |
+| pathways      | LIST       |         | pre-established cell type marker lists                       |
+| n.features    | INTEGER    |         | top n representative genes to consider for hypergeometric test |
+| minSize       | INTEGER    | 0       | minimum number of overlapping genes in pathways              |
+| log.trans     | BOOLEAN    | TRUE    | if TRUE tranform the pvalue matrix with -log10 and convert it to sparse matrix |
+| p.adjust      | BOOLEAN    | TRUE    | if TRUE apply Benjamini Hochberg correction to p-value       |
+
+#### representTopicCluster
+
+representTopicCluster is a function to identify representative PFs for cell clusters.
+
+Usage:  ` representTopicCluster(cellTopic, clusterResult)`
+
+| Parameter     | Value type | Note                           |
+| :------------ | :--------- | :----------------------------- |
+| cellTopic     | MATRIX     | Cell-PF(Document-Topic) matrix |
+| clusterResult | VECTOR     | clustering result              |
+
+#### representTopicCluster
+
+representTopicCluster is a function to identify representative genes for cell clusters.
+
+Usage:  ` representGeneCluster(cellTopic, topicGene, clusterResult, n.features)`
+
+| Parameter     | Value type | Note                                                         |
+| :------------ | :--------- | :----------------------------------------------------------- |
+| cellTopic     | MATRIX     | Cell-PF(Document-Topic) matrix                               |
+| topicGene     | MATRIX     | PF-Gene(Topic-Term) matrix                                   |
+| clusterNumber | INTEGER    | specify the number of clusters                               |
+| n.features    | INTEGER    | specify how many top representative genes will be extracted. |
+
+### main.R
+
+main.R is an example commands of cell_cluster_annotation.R. It shows how to process the test data using cell_cluster_annotation.R. Its input is LDA result(PF = 25). This input is generated by processing cell-gene matrix of test data with run_lda.pl. The command to generate this input is ` perl run_lda.pl -input testData/cell_gene.txt -output testData/PF25 -topics 25`
+
+### testData
+
+The test data consisted of 5000 cells and 21758 genes sampled from 500 cells per cell type in the PBMC dataset(Zheng, et al., 2017). It is a folder that includes its cell-gene matrix, corresponding cell labels, cell type marker LISTs, and LDA result(PF = 25) obtained after run_lda.pl training. It can be used to test the LDA-based methods, that is, as input to run_lda.pl and main.R.
+
+### test.txt(.gz) and test.labels.txt
+
+**test.txt** is an example data for run_lda.pl. The file is a cell x gene matrix, cells as rows, genes as columns. The first row is gene ID, the first column is cell ID.
+
+There are 1,000 cells in the test data, each has 15,000 genes. The expression data is simulated by Splatter. 
+
+The 1,000 cells can be grouped into 5 groups. **test.labels.txt** records the correspondence between cell IDs and their grouping.
+
 ### run_lda.mex.pl
 
 run_lda.mex.pl is an alternative version of main program. Everything is same to run_lda.pl except it takes directory of the 'CellRanger Count' results as input parameter.
@@ -89,22 +181,6 @@ Here we provide transpose.pl program to transpose the gene x cell matrix into ce
 Usage:  `perl transpose.pl Path_of_input_file > Output_file`
 
 Memory consumption for converting large-scale data is high, so please be cautious while running it.
-
-### cell_cluster_annotation.R
-
-Comming soon!
-
-### main.R
-
-Comming soon!
-
-### test.txt(.gz) and test.labels.txt
-
-**test.txt** is an example data for run_lda.pl. The file is a cell x gene matrix, cells as rows, genes as columns. The first row is gene ID, the first column is cell ID.
-
-There are 1,000 cells in the test data, each has 15,000 genes. The expression data is simulated by Splatter. 
-
-The 1,000 cells can be grouped into 5 groups. **test.labels.txt** records the correspondence between cell IDs and their grouping.
 
 ---
 
