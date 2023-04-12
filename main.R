@@ -8,12 +8,12 @@ markerList <- lapply(markerList, function(z){ z[!is.na(z) & z != ""]})
 
 
 # Read LDA result ----------------------------------------------------------------
-cellTopic <- read_cellTopic("testData/PF52");
-topicGene <- read_topicGene("testData/PF52");
+cellTopic <- read_cellTopic("testData/PF25");
+topicGene <- read_topicGene("testData/PF25");
 
 
 # Cell clustering based on LDA ----------------------------------------------------------------
-clusterResult <- LDAFindClusters(cellTopic, clusterNumber = 9)
+clusterResult <- LDAFindClusters(cellTopic, clusterNumber = 6)
 
 
 # LDA automatic cell type prediction using pre-established marker lists ----------------------------------------------------------------
