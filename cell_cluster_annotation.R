@@ -125,10 +125,9 @@ representGeneCluster <- function (cellTopic, topicGene, clusterResult, n.feature
 
 #' LDA automatic cell type prediction
 #' 
-#' @description clusterHGT identifies representative genes for each cell clusters and performs hypergeometric 
-#' test against pre-established cell type marker lists.
+#' @description clusterHGT automatically predicts cell type by identifying representative genes for each cell clusters and performing hypergeometric test against pre-established cell type marker lists.
 #' It returns a score of enrichment in the form of -log10 pvalue. 
-#' It can notably be used with cell type signatures to predict cell types or with functionnal pathways 
+#' It can notably be used with cell type marker genes to predict cell types or with functionnal pathways 
 #'
 #' @param cellTopic Cell-PF(Document-Topic) matrix.
 #' @param topicGene PF-Gene(Topic-Term) matrix.
@@ -147,7 +146,7 @@ representGeneCluster <- function (cellTopic, topicGene, clusterResult, n.feature
 #' cellTopic <- read_cellTopic("result/PF52");
 #' topicGene <- read_topicGene("result/PF52");
 #' clusterResult <- LDAFindClusters(cellTopic,clusterNumber = 9)
-clusterHGT <- function (cellTopic, topicGene, clusterResult, pathways, n.features = n.features, minSize = 0, log.trans = TRUE, p.adjust = TRUE) 
+clusterHGT <- function (cellTopic, topicGene, clusterResult, pathways, n.features , minSize = 0, log.trans = TRUE, p.adjust = TRUE) 
 {
   represent_gene <- representGeneCluster(cellTopic,topicGene,clusterResult,n.features)
   clusterResult <- as.character(clusterResult);
