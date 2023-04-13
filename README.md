@@ -35,7 +35,7 @@ run_lda.pl is an all-in-one style PERL script, the actual LDA modeling is accomp
 
 The MALLET package and installation instruction can be found at [https://github.com/mimno/Mallet](https://github.com/mimno/Mallet).
 
-Assuming the MALLET has been deployed in the system. Before running run_lda.pl, several global parameters neet to be configured.
+Assuming the MALLET has been deployed in the system. Before running run_lda.pl, several global parameters need to be configured.
 
 |Global parameter|Value type|Default|Note|
 |:----|:----|:----|:----|
