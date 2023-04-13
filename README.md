@@ -65,14 +65,14 @@ In the command line, users can use the --help/-h parameter to view the usage of 
 
 ### cell_cluster_annotation.R
 
-cell_cluster_annotation.R is the cluster annotation and function interpretation program, including 6 functions
+cell_cluster_annotation.R is the cluster annotation and function interpretation program, including 6 modules:
 
 * read_cellTopic
 * read_topicGene
 * LDAFindClusters
 * clusterHGT
 * representTopicCluster
-* representTopicCluster
+* representGeneCluster
 
 The functions read the results of the LDA modelling and generate functional interpretations, such as cell clusters and their annotations, representative genes and putative functions, etc.
 
