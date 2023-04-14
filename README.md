@@ -61,6 +61,8 @@ All parameters are required.
 
 In the command line, users can use the --help/-h parameter to view the usage of the program.
 
+NOTICE: Several intermediate files will be generated during program execution. Depending on the sparseness and expression level of scRNA-seq data, the file volume may range from 1/10 to several times that of the cell-gene matrix file. Please ensure that there is sufficient disk space.
+
 `perl run_lda.pl --help`
 
 ### cell_cluster_annotation.R
