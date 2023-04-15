@@ -63,7 +63,13 @@ In the command line, users can use the --help/-h parameter to view the usage of 
 
 `perl run_lda.pl --help`
 
-NOTICE: Several intermediate files will be generated during program execution. Depending on the sparseness and expression level of scRNA-seq data, the file volume may range from 1/10 to several times that of the cell-gene matrix file. Please ensure that there is sufficient disk space.
+NOTICE: 
+
+1. Several intermediate files will be generated during program execution. Depending on the sparseness and expression level of scRNA-seq data, the file volume may range from 1/10 to several times that of the cell-gene matrix file. Please ensure that there is sufficient disk space.
+
+2. MALLET may encounter an "Out of Memory" error for Java heap space, particularly when processing big data. Users may need to modify the memory usage parameter of MALLET. A reference for this can be found  at: [http://programminghistorian.org/en/lessons/topic-modeling-and-mallet#issues-with-big-data](http://programminghistorian.org/en/lessons/topic-modeling-and-mallet#issues-with-big-data).
+
+3. When working with very large-scale data, it is advisable to set a higher number of topics. In practice, when modeling with 1 million or a similar number of cells, setting less than 10 topics may result in errors.
 
 ### cell_cluster_annotation.R
 
